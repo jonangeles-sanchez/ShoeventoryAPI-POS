@@ -4,34 +4,41 @@ import com.shoeventory.posapi.models.Transaction;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "shoes")
 public class Shoe {
     @Id
-    @SequenceGenerator(
-            name = "shoe_sequence",
-            sequenceName = "shoe_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "shoe_sequence"
-    )
-    private Integer id;
-    private String manufacturer;
-    private String type;
-    private String name;
-    private String color;
-    private String size;
-    private Integer quantity;
-    private Integer price;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @ManyToOne
+    @Column
+    private String manufacturer;
+
+    @Column
+    private String type;
+
+    @Column
+    private String name;
+
+    @Column
+    private String color;
+
+    @Column
+    private double size;
+
+    @Column
+    private int quantity;
+
+    @Column
+    private double price;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transaction_id")
     private Transaction transaction;
 
     // Constructors, getters, and setters
 
-
-    public Shoe(String manufacturer, String type, String name, String color, String size, Integer quantity, Integer price, Transaction transaction) {
+    public Shoe(Long id, String manufacturer, String type, String name, String color, double size, int quantity, double price, Transaction transaction) {
+        this.id = id;
         this.manufacturer = manufacturer;
         this.type = type;
         this.name = name;
@@ -42,11 +49,13 @@ public class Shoe {
         this.transaction = transaction;
     }
 
-    public Integer getId() {
+    // Getters and setters
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -82,27 +91,27 @@ public class Shoe {
         this.color = color;
     }
 
-    public String getSize() {
+    public double getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(double size) {
         this.size = size;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public Integer getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
