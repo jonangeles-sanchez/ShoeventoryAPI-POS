@@ -2,68 +2,65 @@ package com.shoeventory.posapi.models;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
+@Table(name = "transactions")
 public class Transaction {
-
     @Id
-    @SequenceGenerator(
-            name = "transaction_sequence",
-            sequenceName = "transaction_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "transaction_sequence"
-    )
-    private Integer id;
-    private Integer merchantId;
-    private Integer time;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "merchant_id")
+    private Long merchantId;
+
+    @Column(name = "transaction_time")
+    private LocalDateTime transactionTime;
 
     @OneToMany(mappedBy = "transaction", cascade = CascadeType.ALL)
-    private Set<Shoe> shoes;
-    private Double total;
-    private Integer pairsSold;
+    private List<Shoe> shoes;
 
     // Constructors, getters, and setters
 
-
-    public Transaction(Integer merchantId, Integer time, Set<Shoe> shoes) {
+    public Transaction(Long id, Long merchantId, LocalDateTime transactionTime, List<Shoe> shoes) {
+        this.id = id;
         this.merchantId = merchantId;
-        this.time = time;
+        this.transactionTime = transactionTime;
         this.shoes = shoes;
     }
 
-    public Integer getId() {
+    // Getters and setters
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getMerchantId() {
+    public Long getMerchantId() {
         return merchantId;
     }
 
-    public void setMerchantId(Integer merchantId) {
+    public void setMerchantId(Long merchantId) {
         this.merchantId = merchantId;
     }
 
-    public Integer getTime() {
-        return time;
+    public LocalDateTime getTransactionTime() {
+        return transactionTime;
     }
 
-    public void setTime(Integer time) {
-        this.time = time;
+    public void setTransactionTime(LocalDateTime transactionTime) {
+        this.transactionTime = transactionTime;
     }
 
-    public Set<Shoe> getShoes() {
+    public List<Shoe> getShoes() {
         return shoes;
     }
 
-    public void setShoes(Set<Shoe> shoes) {
+    public void setShoes(List<Shoe> shoes) {
         this.shoes = shoes;
     }
 }
