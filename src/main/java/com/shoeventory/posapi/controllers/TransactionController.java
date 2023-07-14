@@ -24,6 +24,7 @@ public class TransactionController {
             @RequestBody TransactionDto req) {
         transactionService.createTransaction(req);
         System.out.println("In TransactionController");
+        System.out.println("Request: " + req);
         return ResponseEntity.ok().build();
     }
 
