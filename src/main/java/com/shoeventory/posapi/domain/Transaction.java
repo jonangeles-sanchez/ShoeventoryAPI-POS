@@ -75,4 +75,10 @@ public class Transaction {
     public void setShoes(List<Shoe> shoes) {
         this.shoes = shoes;
     }
+
+    @Override
+    public String toString() {
+        return "Transaction[id=" + id + ", merchantId=" + merchantId + ", transactionTime=" + transactionTime +
+                ", shoes=" + shoes + "]";
+    }
 }
