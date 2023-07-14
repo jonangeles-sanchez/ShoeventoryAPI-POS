@@ -1,4 +1,4 @@
-package com.shoeventory.posapi.models;
+package com.shoeventory.posapi.domain;
 
 import jakarta.persistence.*;
 
@@ -16,15 +16,27 @@ public class Transaction {
     private Long merchantId;
 
     @Column(name = "transaction_time")
-    private LocalDateTime transactionTime;
+    private String transactionTime;
 
     @OneToMany(mappedBy = "transaction", cascade = CascadeType.ALL)
     private List<Shoe> shoes;
 
     // Constructors, getters, and setters
 
-    public Transaction(Long id, Long merchantId, LocalDateTime transactionTime, List<Shoe> shoes) {
+    public Transaction(Long id, Long merchantId, String transactionTime, List<Shoe> shoes) {
         this.id = id;
+        this.merchantId = merchantId;
+        this.transactionTime = transactionTime;
+        this.shoes = shoes;
+    }
+
+    public Transaction(Long merchantId, String transactionTime) {
+        this.merchantId = merchantId;
+        this.transactionTime = transactionTime;
+        this.shoes = shoes;
+    }
+
+    public Transaction(Long merchantId, String transactionTime, List<Shoe> shoes) {
         this.merchantId = merchantId;
         this.transactionTime = transactionTime;
         this.shoes = shoes;
@@ -48,11 +60,11 @@ public class Transaction {
         this.merchantId = merchantId;
     }
 
-    public LocalDateTime getTransactionTime() {
+    public String getTransactionTime() {
         return transactionTime;
     }
 
-    public void setTransactionTime(LocalDateTime transactionTime) {
+    public void setTransactionTime(String transactionTime) {
         this.transactionTime = transactionTime;
     }
 
