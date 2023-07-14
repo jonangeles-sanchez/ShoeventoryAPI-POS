@@ -13,7 +13,8 @@ public class TransactionDtoMapper implements Function<Transaction, TransactionDt
         return new TransactionDto(
                 transaction.getId(),
                 transaction.getMerchantId(),
-                transaction.getTransactionTime()
+                transaction.getTransactionTime(),
+                transaction.getShoes()
         );
     }
 }
