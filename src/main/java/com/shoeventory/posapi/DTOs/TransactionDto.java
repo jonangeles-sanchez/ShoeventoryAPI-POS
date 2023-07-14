@@ -9,7 +9,7 @@ public record TransactionDto(
         Long id,
         Long merchantId,
         String transactionTime,
-        List<Shoe> shoes
+        List<ShoeDto> shoes
 ) {
     @Override
     public String toString() {
