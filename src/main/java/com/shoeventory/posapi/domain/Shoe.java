@@ -48,6 +48,27 @@ public class Shoe {
         this.transaction = transaction;
     }
 
+    public Shoe(String manufacturer, String type, String name, String color, double size, int quantity, double price, Transaction transaction) {
+        this.manufacturer = manufacturer;
+        this.type = type;
+        this.name = name;
+        this.color = color;
+        this.size = size;
+        this.quantity = quantity;
+        this.price = price;
+        this.transaction = transaction;
+    }
+
+    public Shoe(String manufacturer, String type, String name, String color, double size, int quantity, double price) {
+        this.manufacturer = manufacturer;
+        this.type = type;
+        this.name = name;
+        this.color = color;
+        this.size = size;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
     // Getters and setters
 
     public Long getId() {
@@ -124,19 +145,8 @@ public class Shoe {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Shoe[id=").append(id)
-                .append(", manufacturer=").append(manufacturer)
-                .append(", type=").append(type)
-                .append(", name=").append(name)
-                .append(", color=").append(color)
-                .append(", size=").append(size)
-                .append(", quantity=").append(quantity)
-                .append(", price=").append(price);
-        if (transaction != null) {
-            sb.append(", transaction=").append(transaction);
-        }
-        sb.append("]");
-        return sb.toString();
+        return "Shoe[id=" + id + ", manufacturer=" + manufacturer + ", type=" + type +
+                ", name=" + name + ", color=" + color + ", size=" + size +
+                ", quantity=" + quantity + ", price=" + price + "]";
     }
 }
