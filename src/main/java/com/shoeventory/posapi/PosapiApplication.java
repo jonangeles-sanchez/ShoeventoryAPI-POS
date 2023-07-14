@@ -1,18 +1,17 @@
 package com.shoeventory.posapi;
 
-import com.shoeventory.posapi.models.Shoe;
-import com.shoeventory.posapi.models.Transaction;
-import java.util.Set;
-import java.util.HashSet;
-
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.shoeventory.posapi.DAOs")
+@ComponentScan(basePackages = {
+		"com.shoeventory.posapi.DAOs",
+		"com.shoeventory.posapi.controllers",
+		"com.shoeventory.posapi.services",
+		"com.shoeventory.posapi.repositories",
+		"com.shoeventory.posapi",
+		"com.shoeventory.posapi.DTOs"})
 public class PosapiApplication {
 
 	public static void main(String[] args) {
