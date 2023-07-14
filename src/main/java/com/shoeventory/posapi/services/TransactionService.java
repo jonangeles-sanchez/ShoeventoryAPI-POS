@@ -1,10 +1,16 @@
 package com.shoeventory.posapi.services;
 
 import com.shoeventory.posapi.DAOs.TransactionDao;
+import com.shoeventory.posapi.DTOs.ShoeDto;
 import com.shoeventory.posapi.DTOs.TransactionDto;
 import com.shoeventory.posapi.DTOs.TransactionDtoMapper;
+import com.shoeventory.posapi.domain.Shoe;
 import com.shoeventory.posapi.domain.Transaction;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -21,12 +27,31 @@ public class TransactionService {
     public void createTransaction(TransactionDto req) {
         System.out.println("merchantId: " + req.merchantId());
         System.out.println("transactionTime: " + req.transactionTime());
+
         Transaction newTransaction = new Transaction(
                 req.merchantId(),
                 req.transactionTime()
         );
+
+        List<Shoe> shoes = new ArrayList<>();
+        for (ShoeDto shoeDto : req.shoes()) {
+            Shoe shoe = new Shoe(
+                    shoeDto.manufacturer(),
+                    shoeDto.type(),
+                    shoeDto.name(),
+                    shoeDto.color(),
+                    shoeDto.size(),
+                    shoeDto.quantity(),
+                    shoeDto.price()
+            );
+            shoe.setTransaction(newTransaction);
+            shoes.add(shoe);
+        }
+
+        newTransaction.setShoes(shoes);
+
+        System.out.println("newTransaction: " + newTransaction);
         System.out.println("In TransactionService");
         transactionDao.createTransaction(newTransaction);
     }
-
 }
