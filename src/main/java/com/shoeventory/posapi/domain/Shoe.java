@@ -121,4 +121,22 @@ public class Shoe {
     public void setTransaction(Transaction transaction) {
         this.transaction = transaction;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Shoe[id=").append(id)
+                .append(", manufacturer=").append(manufacturer)
+                .append(", type=").append(type)
+                .append(", name=").append(name)
+                .append(", color=").append(color)
+                .append(", size=").append(size)
+                .append(", quantity=").append(quantity)
+                .append(", price=").append(price);
+        if (transaction != null) {
+            sb.append(", transaction=").append(transaction);
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }
