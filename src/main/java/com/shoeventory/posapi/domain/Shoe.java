@@ -1,6 +1,5 @@
-package com.shoeventory.posapi.models;
+package com.shoeventory.posapi.domain;
 
-import com.shoeventory.posapi.models.Transaction;
 import jakarta.persistence.*;
 
 @Entity
