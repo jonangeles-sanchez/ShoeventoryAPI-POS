@@ -29,6 +29,7 @@ public class TransactionController {
     public ResponseEntity<?> updateTransaction(
             @PathVariable("id") Long id,
             @RequestBody TransactionDto req) {
+        System.out.println("TrasanctionId in controller: " + id);
         transactionService.updateTransaction(id, req);
         return ResponseEntity.ok().build();
     }
