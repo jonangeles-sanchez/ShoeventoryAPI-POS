@@ -57,12 +57,9 @@ public class TransactionService {
 
     public void updateTransaction(Long id, TransactionDto req) {
 
-        Transaction updatedTransactions = new Transaction(
-                id,
-                req.transactionTime()
-        );
+        Transaction updatedTransaction = buildTransaction(id, req);
 
-        transactionDao.updateTransaction(updatedTransactions);
+        transactionDao.updateTransaction(updatedTransaction);
     }
 
     public Transaction buildTransaction(TransactionDto req) {
@@ -92,11 +89,17 @@ public class TransactionService {
     }
 
     public Transaction buildTransaction(Long Id, TransactionDto req) {
+        System.out.println("TrasanctionId in builder (service): " + Id);
        Transaction newTransaction = new Transaction(
                 Id,
-                req.transactionTime()
+                req.merchantId(),
+                req.transactionTime(),
+                null
         );
 
+       if(req.shoes() == null){
+           return newTransaction;
+       }
         List<Shoe> shoes = new ArrayList<>();
         for (ShoeDto shoeDto : req.shoes()) {
             Shoe shoe = new Shoe(
