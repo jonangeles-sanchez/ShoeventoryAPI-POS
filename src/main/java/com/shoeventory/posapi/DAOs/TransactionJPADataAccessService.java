@@ -44,4 +44,9 @@ public class TransactionJPADataAccessService implements TransactionDao{
         transactionRepository.save(transactionToUpdate);
 
     }
+
+    @Override
+    public void deleteTransaction(Long id) {
+        transactionRepository.deleteById(id);
+    }
 }
