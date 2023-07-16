@@ -36,6 +36,9 @@ public class Shoe {
 
     // Constructors, getters, and setters
 
+    public Shoe() {
+    }
+
     public Shoe(Long id, String manufacturer, String type, String name, String color, double size, int quantity, double price, Transaction transaction) {
         this.id = id;
         this.manufacturer = manufacturer;

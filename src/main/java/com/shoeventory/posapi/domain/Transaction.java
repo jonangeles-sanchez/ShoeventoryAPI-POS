@@ -23,6 +23,9 @@ public class Transaction {
 
     // Constructors, getters, and setters
 
+    public Transaction() {
+    }
+
     public Transaction(Long id, Long merchantId, String transactionTime, List<Shoe> shoes) {
         this.id = id;
         this.merchantId = merchantId;
