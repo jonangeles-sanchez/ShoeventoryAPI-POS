@@ -4,10 +4,7 @@ import com.shoeventory.posapi.DTOs.TransactionDto;
 import com.shoeventory.posapi.domain.Transaction;
 import com.shoeventory.posapi.services.TransactionService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/transaction")
@@ -28,4 +25,12 @@ public class TransactionController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/{id}/")
+    public ResponseEntity<?> updateTransaction(
+            @PathVariable("id") Long id,
+            @RequestBody TransactionDto req) {
+        System.out.println("TrasanctionId in controller: " + id);
+        transactionService.updateTransaction(id, req);
+        return ResponseEntity.ok().build();
+    }
 }

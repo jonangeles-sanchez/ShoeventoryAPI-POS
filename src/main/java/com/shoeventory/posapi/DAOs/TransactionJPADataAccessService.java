@@ -16,4 +16,32 @@ public class TransactionJPADataAccessService implements TransactionDao{
     public void createTransaction(Transaction transaction) {
         transactionRepository.save(transaction);
     }
+
+    @Override
+    public void updateTransaction(Transaction newTransaction) {
+        Long id = newTransaction.getId();
+
+        if(id == null) {
+            throw new IllegalStateException("Transaction id is null");
+        }
+
+        Transaction transactionToUpdate = transactionRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Transaction with id " + id + " does not exist"));
+
+        if(newTransaction.getMerchantId() != null) {
+            transactionToUpdate.setMerchantId(newTransaction.getMerchantId());
+        }
+
+        if(newTransaction.getTransactionTime() != null){
+            transactionToUpdate.setTransactionTime(newTransaction.getTransactionTime());
+        }
+
+        if(newTransaction.getShoes() != null) {
+            transactionRepository.deleteShoesByTransactionId(id);
+            transactionToUpdate.setShoes(newTransaction.getShoes());
+        }
+
+        transactionRepository.save(transactionToUpdate);
+
+    }
 }
