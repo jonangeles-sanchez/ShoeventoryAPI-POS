@@ -54,4 +54,66 @@ public class TransactionService {
         System.out.println("In TransactionService");
         transactionDao.createTransaction(newTransaction);
     }
+
+    public void updateTransaction(Long id, TransactionDto req) {
+
+        Transaction updatedTransactions = new Transaction(
+                id,
+                req.transactionTime()
+        );
+
+        transactionDao.updateTransaction(updatedTransactions);
+    }
+
+    public Transaction buildTransaction(TransactionDto req) {
+       Transaction newTransaction = new Transaction(
+                req.merchantId(),
+                req.transactionTime()
+        );
+
+        List<Shoe> shoes = new ArrayList<>();
+        for (ShoeDto shoeDto : req.shoes()) {
+            Shoe shoe = new Shoe(
+                    shoeDto.manufacturer(),
+                    shoeDto.type(),
+                    shoeDto.name(),
+                    shoeDto.color(),
+                    shoeDto.size(),
+                    shoeDto.quantity(),
+                    shoeDto.price()
+            );
+            shoe.setTransaction(newTransaction);
+            shoes.add(shoe);
+        }
+
+        newTransaction.setShoes(shoes);
+
+        return newTransaction;
+    }
+
+    public Transaction buildTransaction(Long Id, TransactionDto req) {
+       Transaction newTransaction = new Transaction(
+                Id,
+                req.transactionTime()
+        );
+
+        List<Shoe> shoes = new ArrayList<>();
+        for (ShoeDto shoeDto : req.shoes()) {
+            Shoe shoe = new Shoe(
+                    shoeDto.manufacturer(),
+                    shoeDto.type(),
+                    shoeDto.name(),
+                    shoeDto.color(),
+                    shoeDto.size(),
+                    shoeDto.quantity(),
+                    shoeDto.price()
+            );
+            shoe.setTransaction(newTransaction);
+            shoes.add(shoe);
+        }
+
+        newTransaction.setShoes(shoes);
+
+        return newTransaction;
+    }
 }
