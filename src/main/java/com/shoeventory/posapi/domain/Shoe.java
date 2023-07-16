@@ -1,5 +1,6 @@
 package com.shoeventory.posapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -30,8 +31,9 @@ public class Shoe {
     @Column
     private double price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "transaction_id")
+    @JsonIgnore
     private Transaction transaction;
 
     // Constructors, getters, and setters
