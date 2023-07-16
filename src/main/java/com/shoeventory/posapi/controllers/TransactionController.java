@@ -33,4 +33,11 @@ public class TransactionController {
         transactionService.updateTransaction(id, req);
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping("/{id}/")
+    public ResponseEntity<?> deleteTransaction(
+            @PathVariable("id") Long id) {
+        transactionService.deleteTransaction(id);
+        return ResponseEntity.ok().build();
+    }
 }
