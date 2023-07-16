@@ -40,4 +40,11 @@ public class TransactionController {
         transactionService.deleteTransaction(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/{id}/")
+    public Transaction getTransaction(
+            @PathVariable("id") Long id) {
+        Transaction transaction = transactionService.getTransaction(id);
+        return transaction;
+    }
 }
