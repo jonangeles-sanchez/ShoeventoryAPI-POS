@@ -49,4 +49,10 @@ public class TransactionJPADataAccessService implements TransactionDao{
     public void deleteTransaction(Long id) {
         transactionRepository.deleteById(id);
     }
+
+    @Override
+    public Transaction getTransaction(Long id) {
+        return transactionRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Transaction with id " + id + " does not exist"));
+    }
 }
