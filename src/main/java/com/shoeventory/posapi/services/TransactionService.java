@@ -62,6 +62,10 @@ public class TransactionService {
         transactionDao.updateTransaction(updatedTransaction);
     }
 
+    public void deleteTransaction(Long id) {
+        transactionDao.deleteTransaction(id);
+    }
+
     public Transaction buildTransaction(TransactionDto req) {
        Transaction newTransaction = new Transaction(
                 req.merchantId(),
